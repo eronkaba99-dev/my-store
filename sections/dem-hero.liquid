@@ -1,0 +1,162 @@
+<style>
+  .dem-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: max(560px, 90vh);
+    background: rgb(0, 0, 0);
+    overflow: hidden;
+  }
+
+  .dem-hero__bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .dem-hero__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .dem-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.42);
+  }
+
+  .dem-hero__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .dem-hero__eyebrow {
+    font-family: var(--dem-font-sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0 0 2rem;
+  }
+
+  .dem-hero__heading {
+    font-family: var(--dem-font-serif);
+    font-size: clamp(4.5rem, 10vw, 8rem);
+    font-weight: 200;
+    letter-spacing: 0.01em;
+    line-height: 1.04;
+    color: #ffffff;
+    margin: 0 0 1.5rem;
+  }
+
+  .dem-hero__subheading {
+    font-family: var(--dem-font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.72);
+    margin: 0 auto 3rem;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  @media screen and (max-width: 749px) {
+    .dem-hero__eyebrow { margin-bottom: 1.2rem; }
+    .dem-hero__subheading { margin-bottom: 2rem; }
+  }
+</style>
+
+<section class="dem-hero" id="section-{{ section.id }}">
+  {%- if section.settings.background_image != blank -%}
+    <div class="dem-hero__bg">
+      {{
+        section.settings.background_image
+        | image_url: width: 2400
+        | image_tag:
+          loading: 'eager',
+          widths: '750, 1100, 1500, 1780, 2000, 2400',
+          sizes: '100vw',
+          class: 'dem-hero__bg-img',
+          alt: section.settings.background_image.alt | default: ''
+      }}
+    </div>
+    <div class="dem-hero__overlay"></div>
+  {%- endif -%}
+
+  <div class="dem-hero__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="dem-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+
+    <h1 class="dem-hero__heading">{{ section.settings.heading }}</h1>
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="dem-hero__subheading">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank -%}
+      <a
+        href="{{ section.settings.button_link | default: '/collections/all' }}"
+        class="dem-btn dem-btn--light"
+      >
+        {{- section.settings.button_label -}}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dem Hero",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Dressed with intention."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Premium menswear. Refined for those who move with intention."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop the Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dem Hero"
+    }
+  ]
+}
+{% endschema %}

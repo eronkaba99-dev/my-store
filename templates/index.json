@@ -9,76 +9,212 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "dem_hero": {
+      "type": "dem-hero",
+      "settings": {
+        "eyebrow": "New Arrivals",
+        "heading": "Dressed with intention.",
+        "subheading": "Premium menswear. Refined for those who move with intention.",
+        "button_label": "Shop the Collection",
+        "button_link": "/collections/all"
+      }
+    },
+    "dem_products": {
+      "type": "dem-featured-products",
+      "settings": {
+        "heading": "New Arrivals",
+        "subheading": "Crafted for modern elegance",
+        "products_to_show": 4,
+        "button_label": "View All",
+        "button_link": "/collections/all"
+      }
+    },
+    "dem_brand_editorial": {
+      "type": "dem-brand-editorial",
+      "settings": {
+        "heading": "Our Bestsellers, Crafted for Modern Elegance",
+        "subtext": "Each piece in our collection is selected for quality of material, precision of cut, and longevity of wear. No filler. No fast fashion.",
+        "button_label": "Shop Now",
+        "button_link": "/collections/all",
+        "bg_dark": false
+      }
+    },
+    "dem_long_copy": {
+      "type": "dem-long-copy",
+      "settings": {
+        "eyebrow": "The Demetti Standard",
+        "pull_quote": "Luxury is not a price point. It\u2019s a commitment.",
+        "body_copy": "<p>We started Demetti with one belief: that the clothes you wear every day should be made with the same care as the ones reserved for special occasions.</p><p>Every fabric is chosen for hand-feel and durability. Every pattern is developed to fit the modern body \u2014 not too slim, not boxy. Every stitch is placed with intention. This is what craftsmanship looks like when it\u2019s not a marketing term.</p><p>We source from mills in Portugal, Italy, and the UK. We work with factories that have been in operation for generations. We don\u2019t chase trends. We build a wardrobe that lasts.</p>",
+        "button_label": "Shop Now",
+        "button_link": "/collections/all",
+        "bg_dark": false
+      }
+    },
+    "dem_testimonials": {
+      "type": "dem-testimonials",
+      "settings": {
+        "heading": "Loved by Men Who Lead"
+      },
+      "blocks": {
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "quote": "I\u2019ve worn a lot of menswear. Nothing has fit or lasted the way Demetti does. The Oxford shirt is the best I\u2019ve ever owned.",
+            "author": "James T.",
+            "role": "Architect, London"
+          }
+        },
+        "quote_2": {
+          "type": "quote",
+          "settings": {
+            "quote": "The fabric quality is exceptional. I get compliments every time I wear the linen trousers. Simple, understated, perfect.",
+            "author": "Marcus R.",
+            "role": "Creative Director, Stockholm"
+          }
+        },
+        "quote_3": {
+          "type": "quote",
+          "settings": {
+            "quote": "Fast shipping, beautiful packaging, and the fit is exactly what I expected. This is what luxury should feel like.",
+            "author": "Oliver H.",
+            "role": "Founder, Amsterdam"
+          }
+        }
+      },
+      "block_order": ["quote_1", "quote_2", "quote_3"]
+    },
+    "dem_pillars": {
+      "type": "dem-pillars",
+      "settings": {
+        "heading": "Craftsmanship First"
+      },
+      "blocks": {
+        "pillar_1": {
+          "type": "pillar",
+          "settings": {
+            "title": "Premium Fabrics",
+            "text": "Every garment is made from natural fibres \u2014 wool, cotton, linen \u2014 sourced from certified mills in Europe."
+          }
+        },
+        "pillar_2": {
+          "type": "pillar",
+          "settings": {
+            "title": "Tailored Construction",
+            "text": "Our patterns are developed to fit the modern body. Not too slim. Not boxy. Exactly right."
+          }
+        },
+        "pillar_3": {
+          "type": "pillar",
+          "settings": {
+            "title": "Designed to Last",
+            "text": "We build pieces that outlive trends. Buy once, wear for years."
+          }
+        }
+      },
+      "block_order": ["pillar_1", "pillar_2", "pillar_3"]
+    },
+    "dem_value_prop": {
+      "type": "dem-value-prop",
+      "settings": {
+        "heading": "Luxury Without the Markup"
+      },
+      "blocks": {
+        "line_1": {
+          "type": "line",
+          "settings": { "line": "Direct to you \u2014 no retail middlemen" }
+        },
+        "line_2": {
+          "type": "line",
+          "settings": { "line": "Premium European fabrics at honest prices" }
+        },
+        "line_3": {
+          "type": "line",
+          "settings": { "line": "Free returns on all orders" }
+        },
+        "line_4": {
+          "type": "line",
+          "settings": { "line": "Lifetime repair service on all garments" }
+        }
+      },
+      "block_order": ["line_1", "line_2", "line_3", "line_4"]
+    },
+    "dem_faq": {
+      "type": "dem-faq",
+      "settings": {
+        "heading": "Frequently Asked Questions"
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What materials do you use?",
+            "answer": "We work exclusively with natural fibres: merino wool, organic cotton, linen, and full-grain leather. All fabrics are sourced from certified mills in Portugal, Italy, and the UK."
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does the sizing work?",
+            "answer": "Our garments run true to size. We recommend measuring your chest and consulting our size guide. If you\u2019re between sizes, size up for a relaxed fit."
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I care for my garments?",
+            "answer": "Most pieces should be cold washed on a gentle cycle or hand washed. Wool items benefit from airing between wears. Full care instructions are on the label of each garment."
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "We offer free returns within 30 days of delivery. Items must be unworn and in original packaging. Start a return from your account page."
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "Standard delivery is 3\u20135 business days. Express (1\u20132 days) is available at checkout. Free standard shipping on orders over \u00a3100."
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"]
+    },
+    "dem_newsletter": {
+      "type": "newsletter",
       "blocks": {
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "ok",
-            "heading_size": "h0"
+            "heading": "Join the Intentional Wardrobe",
+            "heading_size": "h2"
           }
         },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
+        "email_form": {
+          "type": "email_form",
+          "settings": {}
         }
       },
-      "block_order": [
-        "heading",
-        "button"
-      ],
+      "block_order": ["heading", "email_form"],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "all",
-        "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
         "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 52
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "dem_hero",
+    "dem_products",
+    "dem_brand_editorial",
+    "dem_long_copy",
+    "dem_testimonials",
+    "dem_pillars",
+    "dem_value_prop",
+    "dem_faq",
+    "dem_newsletter"
   ]
 }

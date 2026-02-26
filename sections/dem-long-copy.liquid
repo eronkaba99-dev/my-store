@@ -1,0 +1,151 @@
+<style>
+  .dem-long-copy {
+    padding: 100px 2rem;
+    background: rgb(var(--dem-bg));
+    color: rgb(var(--dem-black));
+  }
+
+  .dem-long-copy--dark {
+    background: rgb(var(--dem-black));
+    color: rgb(var(--dem-white));
+  }
+
+  .dem-long-copy__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .dem-long-copy__eyebrow {
+    font-family: var(--dem-font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgb(var(--dem-muted));
+    margin: 0 0 1.5rem;
+  }
+
+  .dem-long-copy--dark .dem-long-copy__eyebrow {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .dem-long-copy__pull-quote {
+    font-family: var(--dem-font-serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 200;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: inherit;
+  }
+
+  .dem-long-copy__body {
+    font-family: var(--dem-font-sans);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgb(var(--dem-muted));
+    margin: 0 0 2.5rem;
+  }
+
+  .dem-long-copy--dark .dem-long-copy__body {
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .dem-long-copy__body p { margin: 0 0 1.2em; }
+  .dem-long-copy__body p:last-child { margin-bottom: 0; }
+
+  @media screen and (max-width: 989px) {
+    .dem-long-copy__inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .dem-long-copy { padding: 72px 1.2rem; }
+  }
+</style>
+
+<section
+  class="dem-long-copy{% if section.settings.bg_dark %} dem-long-copy--dark{% endif %}"
+  id="section-{{ section.id }}"
+>
+  <div class="dem-long-copy__inner">
+    <div class="dem-long-copy__left">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="dem-long-copy__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.pull_quote != blank -%}
+        <p class="dem-long-copy__pull-quote">{{ section.settings.pull_quote }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="dem-long-copy__right">
+      {%- if section.settings.body_copy != blank -%}
+        <div class="dem-long-copy__body">{{ section.settings.body_copy }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a
+          href="{{ section.settings.button_link | default: '/collections/all' }}"
+          class="dem-btn{% if section.settings.bg_dark %} dem-btn--light{% else %} dem-btn--ghost{% endif %}"
+        >
+          {{- section.settings.button_label -}}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dem Long Copy",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Demetti Standard"
+    },
+    {
+      "type": "text",
+      "id": "pull_quote",
+      "label": "Pull quote",
+      "default": "Luxury is not a price point. It\u2019s a commitment."
+    },
+    {
+      "type": "richtext",
+      "id": "body_copy",
+      "label": "Body copy",
+      "default": "<p>We started Demetti with one belief: that the clothes you wear every day should be made with the same care as the ones reserved for special occasions.</p><p>Every fabric is chosen for hand-feel and durability. Every pattern is developed to fit the modern body \u2014 not too slim, not boxy. Every stitch is placed with intention. This is what craftsmanship looks like when it\u2019s not a marketing term.</p><p>We source from mills in Portugal, Italy, and the UK. We work with factories that have been in operation for generations. We don\u2019t chase trends. We build a wardrobe that lasts.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "bg_dark",
+      "label": "Dark background",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dem Long Copy"
+    }
+  ]
+}
+{% endschema %}

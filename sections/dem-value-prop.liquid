@@ -1,0 +1,141 @@
+<style>
+  .dem-value-prop {
+    padding: 120px 2rem;
+    background: rgb(var(--dem-black));
+    color: rgb(var(--dem-white));
+  }
+
+  .dem-value-prop__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0 60px;
+    align-items: center;
+  }
+
+  .dem-value-prop__divider {
+    background: rgba(255, 255, 255, 0.15);
+    height: 100%;
+    min-height: 200px;
+  }
+
+  .dem-value-prop__heading {
+    font-family: var(--dem-font-serif);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 200;
+    letter-spacing: 0.01em;
+    line-height: 1.08;
+    margin: 0;
+    color: rgb(var(--dem-white));
+  }
+
+  .dem-value-prop__lines {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dem-value-prop__lines li {
+    font-family: var(--dem-font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dem-value-prop__lines li:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @media screen and (max-width: 989px) {
+    .dem-value-prop__inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .dem-value-prop__divider {
+      display: none;
+    }
+    .dem-value-prop {
+      padding: 80px 1.5rem;
+    }
+  }
+</style>
+
+<section class="dem-value-prop" id="section-{{ section.id }}">
+  <div class="dem-value-prop__inner">
+    <div class="dem-value-prop__left">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="dem-value-prop__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="dem-value-prop__divider"></div>
+
+    <div class="dem-value-prop__right">
+      {%- if section.blocks.size > 0 -%}
+        <ul class="dem-value-prop__lines">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.line != blank -%}
+              <li {{ block.shopify_attributes }}>{{ block.settings.line }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dem Value Prop",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Luxury Without the Markup"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "line",
+      "name": "Line",
+      "settings": [
+        {
+          "type": "text",
+          "id": "line",
+          "label": "Line"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dem Value Prop",
+      "blocks": [
+        {
+          "type": "line",
+          "settings": { "line": "Direct to you \u2014 no retail middlemen" }
+        },
+        {
+          "type": "line",
+          "settings": { "line": "Premium European fabrics at honest prices" }
+        },
+        {
+          "type": "line",
+          "settings": { "line": "Free returns on all orders" }
+        },
+        {
+          "type": "line",
+          "settings": { "line": "Lifetime repair service on all garments" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

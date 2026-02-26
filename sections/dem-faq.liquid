@@ -1,0 +1,172 @@
+<style>
+  .dem-faq {
+    padding: 100px 2rem;
+    background: rgb(var(--dem-bg));
+  }
+
+  .dem-faq__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .dem-faq__heading {
+    font-family: var(--dem-font-serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 200;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: rgb(var(--dem-black));
+  }
+
+  .dem-faq__list {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .dem-faq__item {
+    border-bottom: 1px solid rgb(var(--dem-border));
+  }
+
+  .dem-faq__item:first-child {
+    border-top: 1px solid rgb(var(--dem-border));
+  }
+
+  .dem-faq__item summary {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    font-family: var(--dem-font-sans);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: rgb(var(--dem-black));
+    user-select: none;
+  }
+
+  .dem-faq__item summary::-webkit-details-marker { display: none; }
+  .dem-faq__item summary::marker { display: none; }
+
+  .dem-faq__item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    font-weight: 300;
+    flex-shrink: 0;
+    margin-left: 1rem;
+    transition: transform 0.25s ease;
+    line-height: 1;
+  }
+
+  .dem-faq__item[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .dem-faq__answer {
+    font-family: var(--dem-font-sans);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgb(var(--dem-muted));
+    padding: 0 0 1.5rem;
+    max-width: 640px;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 479px) {
+    .dem-faq { padding: 72px 1.2rem; }
+  }
+</style>
+
+<section class="dem-faq" id="section-{{ section.id }}">
+  <div class="dem-faq__header">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="dem-faq__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+  </div>
+
+  <div class="dem-faq__list">
+    {%- for block in section.blocks -%}
+      <details class="dem-faq__item" {{ block.shopify_attributes }}>
+        <summary>{{ block.settings.question }}</summary>
+        <p class="dem-faq__answer">{{ block.settings.answer }}</p>
+      </details>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dem FAQ",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dem FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What materials do you use?",
+            "answer": "We work exclusively with natural fibres: merino wool, organic cotton, linen, and full-grain leather. All fabrics are sourced from certified mills in Portugal, Italy, and the UK."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does the sizing work?",
+            "answer": "Our garments run true to size. We recommend measuring your chest and consulting our size guide. If you\u2019re between sizes, size up for a relaxed fit."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I care for my garments?",
+            "answer": "Most pieces should be cold washed on a gentle cycle or hand washed. Wool items benefit from airing between wears. Full care instructions are on the label of each garment."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "We offer free returns within 30 days of delivery. Items must be unworn and in original packaging. Start a return from your account page."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "Standard delivery is 3\u20135 business days. Express (1\u20132 days) is available at checkout. Free standard shipping on orders over \u00a3100."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

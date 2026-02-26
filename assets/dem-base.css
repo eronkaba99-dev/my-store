@@ -1,0 +1,226 @@
+/* ============================================================
+   Demetti Base — Design Tokens, Typography & Global Overrides
+   Inspired by: Sothiares.com
+   ============================================================ */
+
+/* ─────────────────────────────────────────────────────────────
+   1. Design Tokens
+   ───────────────────────────────────────────────────────────── */
+:root {
+  /* ── Demetti Palette (raw RGB triplets) ── */
+  --dem-bg:      255, 255, 255;   /* pure white */
+  --dem-black:     0,   0,   0;   /* pure black */
+  --dem-accent:   44,  62,  80;   /* #2C3E50 — navy-grey primary */
+  --dem-muted:   102, 102, 102;   /* mid-grey body copy */
+  --dem-border:  230, 230, 230;   /* #E6E6E6 light rules */
+  --dem-white:   255, 255, 255;
+
+  /* ── Demetti Font Stacks ── */
+  --dem-font-serif: 'Newsreader', Georgia, serif;
+  --dem-font-sans:  'Red Hat Text', system-ui, sans-serif;
+
+  /* ── Override Dawn/Lux font variables ── */
+  --font-heading-family: 'Newsreader', Georgia, serif;
+  --font-heading-style:  normal;
+  --font-heading-weight: 200;
+
+  --font-body-family:      'Red Hat Text', system-ui, sans-serif;
+  --font-body-style:       normal;
+  --font-body-weight:      400;
+  --font-body-weight-bold: 700;
+
+  /* ── Override Dawn color scheme tokens ── */
+  --color-background:            var(--dem-bg);
+  --color-foreground:            var(--dem-black);
+  --color-button:                var(--dem-accent);
+  --color-button-text:           var(--dem-white);
+  --color-secondary-button:      var(--dem-white);
+  --color-secondary-button-text: var(--dem-black);
+  --color-link:                  var(--dem-black);
+
+  /* ── Shape — zero radii ── */
+  --buttons-radius:     0px;
+  --inputs-radius:      0px;
+  --media-radius:       0px;
+  --product-card-corner-radius:    0px;
+  --collection-card-corner-radius: 0px;
+  --badge-corner-radius: 0px;
+
+  /* ── Product cards — clean ── */
+  --product-card-image-padding:  0rem;
+  --product-card-border-width:   0px;
+  --product-card-border-opacity: 0;
+  --product-card-shadow-opacity: 0;
+  --product-card-shadow-visible: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   2. Global Base
+   ───────────────────────────────────────────────────────────── */
+body {
+  background-color: rgb(var(--dem-bg)) !important;
+  font-family: var(--dem-font-sans);
+  color: rgb(var(--dem-black));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5 {
+  font-family: var(--dem-font-serif);
+  font-weight: 200;
+  letter-spacing: 0.01em;
+  line-height: 1.08;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   3. Navigation
+   ───────────────────────────────────────────────────────────── */
+.header__heading-link,
+.header__menu-item {
+  font-family: var(--dem-font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   4. Buttons — dem-btn classes (used across all dem sections)
+   ───────────────────────────────────────────────────────────── */
+.dem-btn {
+  display: inline-block;
+  font-family: var(--dem-font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 36px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  /* Default: filled navy */
+  background: rgb(var(--dem-accent));
+  color: rgb(var(--dem-white));
+}
+
+.dem-btn:hover {
+  background: #383838;
+  color: rgb(var(--dem-white));
+  opacity: 1;
+}
+
+/* Ghost variant — black border on white bg */
+.dem-btn--ghost {
+  background: transparent;
+  color: rgb(var(--dem-black));
+  border-color: rgb(var(--dem-black));
+}
+
+.dem-btn--ghost:hover {
+  background: rgb(var(--dem-black));
+  color: rgb(var(--dem-white));
+}
+
+/* Light variant — white border on dark bg */
+.dem-btn--light {
+  background: transparent;
+  color: rgb(var(--dem-white));
+  border-color: rgb(var(--dem-white));
+}
+
+.dem-btn--light:hover {
+  background: rgb(var(--dem-white));
+  color: rgb(var(--dem-black));
+}
+
+/* ─────────────────────────────────────────────────────────────
+   5. Links
+   ───────────────────────────────────────────────────────────── */
+a:not(.button):not(.dem-btn) {
+  color: rgb(var(--dem-black));
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:not(.button):not(.dem-btn):hover {
+  opacity: 0.6;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   6. Product Cards
+   ───────────────────────────────────────────────────────────── */
+.card__heading {
+  font-family: var(--dem-font-sans);
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.price {
+  font-family: var(--dem-font-sans);
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   7. Dawn featured-collection overrides
+   ───────────────────────────────────────────────────────────── */
+.featured-collection {
+  margin-top: 0 !important;
+}
+
+.featured-collection .title {
+  font-family: var(--dem-font-serif);
+  font-weight: 200;
+  letter-spacing: 0.02em;
+  margin-bottom: 3rem;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   8. Newsletter
+   ───────────────────────────────────────────────────────────── */
+.newsletter .inline-richtext {
+  font-family: var(--dem-font-serif);
+  font-weight: 200;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   9. Form Inputs
+   ───────────────────────────────────────────────────────────── */
+.field__input,
+.select__select,
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="search"] {
+  border-radius: 0;
+  font-family: var(--dem-font-sans);
+}
+
+.field__input:focus,
+.select__select:focus,
+textarea:focus {
+  border-color: rgb(var(--dem-black));
+  box-shadow: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   10. Announcement Bar
+   ───────────────────────────────────────────────────────────── */
+.announcement-bar {
+  font-family: var(--dem-font-sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}

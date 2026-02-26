@@ -1,0 +1,149 @@
+<style>
+  .dem-pillars {
+    padding: 100px 2rem;
+    background: rgb(var(--dem-bg));
+  }
+
+  .dem-pillars__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .dem-pillars__heading {
+    font-family: var(--dem-font-serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 200;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: rgb(var(--dem-black));
+  }
+
+  .dem-pillars__grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px 60px;
+  }
+
+  .dem-pillar__rule {
+    width: 40px;
+    height: 1px;
+    background: rgb(var(--dem-black));
+    margin-bottom: 1.5rem;
+  }
+
+  .dem-pillar__title {
+    font-family: var(--dem-font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+    color: rgb(var(--dem-black));
+  }
+
+  .dem-pillar__text {
+    font-family: var(--dem-font-sans);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgb(var(--dem-muted));
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .dem-pillars__grid {
+      grid-template-columns: 1fr;
+      max-width: 560px;
+      gap: 40px;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .dem-pillars { padding: 72px 1.2rem; }
+  }
+</style>
+
+<section class="dem-pillars" id="section-{{ section.id }}">
+  <div class="dem-pillars__header">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="dem-pillars__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+  </div>
+
+  <div class="dem-pillars__grid">
+    {%- for block in section.blocks -%}
+      <div class="dem-pillar" {{ block.shopify_attributes }}>
+        <div class="dem-pillar__rule"></div>
+        {%- if block.settings.title != blank -%}
+          <h3 class="dem-pillar__title">{{ block.settings.title }}</h3>
+        {%- endif -%}
+        {%- if block.settings.text != blank -%}
+          <p class="dem-pillar__text">{{ block.settings.text }}</p>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dem Pillars",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Craftsmanship First"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dem Pillars",
+      "blocks": [
+        {
+          "type": "pillar",
+          "settings": {
+            "title": "Premium Fabrics",
+            "text": "Every garment is made from natural fibres \u2014 wool, cotton, linen \u2014 sourced from certified mills in Europe."
+          }
+        },
+        {
+          "type": "pillar",
+          "settings": {
+            "title": "Tailored Construction",
+            "text": "Our patterns are developed to fit the modern body. Not too slim. Not boxy. Exactly right."
+          }
+        },
+        {
+          "type": "pillar",
+          "settings": {
+            "title": "Designed to Last",
+            "text": "We build pieces that outlive trends. Buy once, wear for years."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

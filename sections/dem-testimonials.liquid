@@ -1,0 +1,176 @@
+<style>
+  .dem-testimonials {
+    padding: 100px 2rem;
+    background: rgb(var(--dem-bg));
+  }
+
+  .dem-testimonials__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .dem-testimonials__heading {
+    font-family: var(--dem-font-serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 200;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: rgb(var(--dem-black));
+  }
+
+  .dem-testimonials__grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .dem-quote-card {
+    padding: 40px 32px;
+    background: rgba(230, 230, 230, 0.25);
+  }
+
+  .dem-quote-card__stars {
+    font-size: 1rem;
+    color: rgb(var(--dem-black));
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .dem-quote-card__text {
+    font-family: var(--dem-font-serif);
+    font-style: italic;
+    font-weight: 200;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgb(var(--dem-black));
+    margin: 0 0 1.5rem;
+  }
+
+  .dem-quote-card__author {
+    font-family: var(--dem-font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgb(var(--dem-muted));
+    margin: 0;
+  }
+
+  .dem-quote-card__role {
+    font-family: var(--dem-font-sans);
+    font-size: 0.72rem;
+    color: rgb(var(--dem-muted));
+    margin: 0.25rem 0 0;
+    letter-spacing: 0.05em;
+  }
+
+  @media screen and (max-width: 989px) {
+    .dem-testimonials__grid {
+      grid-template-columns: 1fr;
+      max-width: 560px;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .dem-testimonials { padding: 72px 1.2rem; }
+    .dem-quote-card { padding: 28px 20px; }
+  }
+</style>
+
+<section class="dem-testimonials" id="section-{{ section.id }}">
+  <div class="dem-testimonials__header">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="dem-testimonials__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+  </div>
+
+  <div class="dem-testimonials__grid">
+    {%- for block in section.blocks -%}
+      <div class="dem-quote-card" {{ block.shopify_attributes }}>
+        <div class="dem-quote-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        {%- if block.settings.quote != blank -%}
+          <p class="dem-quote-card__text">&ldquo;{{ block.settings.quote }}&rdquo;</p>
+        {%- endif -%}
+        {%- if block.settings.author != blank -%}
+          <p class="dem-quote-card__author">{{ block.settings.author }}</p>
+        {%- endif -%}
+        {%- if block.settings.role != blank -%}
+          <p class="dem-quote-card__role">{{ block.settings.role }}</p>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dem Testimonials",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Loved by Men Who Lead"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role / Location (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dem Testimonials",
+      "blocks": [
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "I\u2019ve worn a lot of menswear. Nothing has fit or lasted the way Demetti does. The Oxford shirt is the best I\u2019ve ever owned.",
+            "author": "James T.",
+            "role": "Architect, London"
+          }
+        },
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "The fabric quality is exceptional. I get compliments every time I wear the linen trousers. Simple, understated, perfect.",
+            "author": "Marcus R.",
+            "role": "Creative Director, Stockholm"
+          }
+        },
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "Fast shipping, beautiful packaging, and the fit is exactly what I expected. This is what luxury should feel like.",
+            "author": "Oliver H.",
+            "role": "Founder, Amsterdam"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
