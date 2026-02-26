@@ -26,7 +26,7 @@
             "label": "Men",
             "sub": "Precision cut. Built to endure.",
             "cta": "Shop Men",
-            "link": "/collections/men"
+            "link": "/collections/all/men"
           }
         },
         "panel_women": {
@@ -35,7 +35,7 @@
             "label": "Women",
             "sub": "Considered design. Uncompromising fit.",
             "cta": "Shop Women",
-            "link": "/collections/women"
+            "link": "/collections/all/women"
           }
         }
       },
@@ -46,10 +46,10 @@
       "settings": {
         "heading": "The Men\u2019s Edit",
         "subheading": "From boardroom to weekend \u2014 built for every occasion.",
-        "collection": "men",
+        "tag_filter": "men",
         "products_to_show": 4,
         "button_label": "Shop All Men",
-        "button_link": "/collections/men"
+        "button_link": "/collections/all/men"
       }
     },
     "dem_col_women": {
@@ -57,10 +57,10 @@
       "settings": {
         "heading": "The Women\u2019s Edit",
         "subheading": "Considered silhouettes. Exceptional fabric. Worn with intention.",
-        "collection": "women",
+        "tag_filter": "women",
         "products_to_show": 4,
         "button_label": "Shop All Women",
-        "button_link": "/collections/women"
+        "button_link": "/collections/all/women"
       }
     },
     "dem_col_newsletter": {
