@@ -1,0 +1,89 @@
+<style>
+  .dem-col-header {
+    padding: 80px 2rem 64px;
+    text-align: center;
+    background: rgb(var(--dem-bg));
+    border-bottom: 1px solid rgb(var(--dem-border));
+  }
+
+  .dem-col-header__eyebrow {
+    font-family: var(--dem-font-sans);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgb(var(--dem-muted));
+    margin: 0 0 2rem;
+  }
+
+  .dem-col-header__heading {
+    font-family: var(--dem-font-serif);
+    font-size: clamp(1.8rem, 8vw, 3.2rem);
+    font-weight: 200;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin: 0 0 2rem;
+    color: rgb(var(--dem-black));
+  }
+
+  .dem-col-header__rule {
+    width: 48px;
+    height: 1px;
+    background: rgb(var(--dem-black));
+    margin: 0 auto 2rem;
+  }
+
+  .dem-col-header__subheading {
+    font-family: var(--dem-font-sans);
+    font-size: 0.95rem;
+    color: rgb(var(--dem-muted));
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.65;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .dem-col-header { padding: 60px 1.5rem 48px; }
+    .dem-col-header__heading { font-size: clamp(1.6rem, 8vw, 2.4rem); }
+  }
+</style>
+
+{%- assign eyebrow = section.settings.custom_eyebrow | default: 'Demetti' -%}
+{%- assign subheading = section.settings.custom_subheading | default: collection.description -%}
+
+<div class="dem-col-header" id="section-{{ section.id }}">
+  <p class="dem-col-header__eyebrow">{{ eyebrow }}</p>
+  <h1 class="dem-col-header__heading">{{ collection.title }}</h1>
+  <div class="dem-col-header__rule"></div>
+  {%- if subheading != blank -%}
+    <p class="dem-col-header__subheading">{{ subheading }}</p>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Dem Collection Header",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_eyebrow",
+      "label": "Eyebrow override",
+      "info": "Overrides the default 'Demetti' eyebrow. Leave blank to use default."
+    },
+    {
+      "type": "text",
+      "id": "custom_subheading",
+      "label": "Subheading override",
+      "info": "Overrides the collection description. Leave blank to use the collection description from Shopify Admin."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dem Collection Header"
+    }
+  ]
+}
+{% endschema %}

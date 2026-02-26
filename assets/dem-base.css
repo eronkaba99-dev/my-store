@@ -32,7 +32,7 @@
   /* ── Override Dawn color scheme tokens ── */
   --color-background:            var(--dem-bg);
   --color-foreground:            var(--dem-black);
-  --color-button:                var(--dem-accent);
+  --color-button:                var(--dem-black);
   --color-button-text:           var(--dem-white);
   --color-secondary-button:      var(--dem-white);
   --color-secondary-button-text: var(--dem-black);
@@ -126,11 +126,11 @@ h1, h2, h3, h4, h5, h6,
   color: rgb(var(--dem-white));
 }
 
-/* Light variant — white border on dark bg */
+/* Light variant — white 2px border on dark bg */
 .dem-btn--light {
   background: transparent;
   color: rgb(var(--dem-white));
-  border-color: rgb(var(--dem-white));
+  border: 2px solid rgb(var(--dem-white));
 }
 
 .dem-btn--light:hover {
@@ -223,4 +223,56 @@ textarea:focus {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 0.75rem;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   11. Fix 2 — Dawn native .button → solid black, all-caps
+   ───────────────────────────────────────────────────────────── */
+.button {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-family: var(--dem-font-sans);
+  font-weight: 400;
+}
+
+.button:hover {
+  background-color: transparent !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   12. Fix 3 — Value prop ("Direct to you") — center + spacing
+   ───────────────────────────────────────────────────────────── */
+.dem-value-prop__inner {
+  grid-template-columns: 1fr;
+  max-width: 760px;
+  text-align: center;
+}
+
+.dem-value-prop__divider {
+  display: none !important;
+}
+
+.dem-value-prop__heading {
+  margin-bottom: 2.5rem;
+}
+
+.dem-value-prop__lines li {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   13. Fix 4 — Collection pages: remove the behind-nav pull
+       (the -120px in base.css is for the full-screen hero only)
+   ───────────────────────────────────────────────────────────── */
+body.template-collection .main-content,
+body.template-collection #MainContent,
+body.template-collection .content-for-layout {
+  margin-top: 0 !important;
 }
