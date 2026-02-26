@@ -9,18 +9,89 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-list-collections",
+    "dem_col_hero": {
+      "type": "dem-page-hero",
       "settings": {
-        "title": "Collections",
-        "sort": "alphabetical",
-        "image_ratio": "square",
-        "columns_desktop": 3,
-        "columns_mobile": "2"
+        "eyebrow": "Demetti",
+        "heading": "Collections",
+        "subheading": "Explore the Demetti range \u2014 precision cut, built to endure."
+      }
+    },
+    "dem_col_split": {
+      "type": "dem-collection-split",
+      "blocks": {
+        "panel_men": {
+          "type": "panel",
+          "settings": {
+            "label": "Men",
+            "sub": "Precision cut. Built to endure.",
+            "cta": "Shop Men",
+            "link": "/collections/men"
+          }
+        },
+        "panel_women": {
+          "type": "panel",
+          "settings": {
+            "label": "Women",
+            "sub": "Considered design. Uncompromising fit.",
+            "cta": "Shop Women",
+            "link": "/collections/women"
+          }
+        }
+      },
+      "block_order": ["panel_men", "panel_women"]
+    },
+    "dem_col_men": {
+      "type": "dem-featured-products",
+      "settings": {
+        "heading": "The Men\u2019s Edit",
+        "subheading": "From boardroom to weekend \u2014 built for every occasion.",
+        "collection": "men",
+        "products_to_show": 4,
+        "button_label": "Shop All Men",
+        "button_link": "/collections/men"
+      }
+    },
+    "dem_col_women": {
+      "type": "dem-featured-products",
+      "settings": {
+        "heading": "The Women\u2019s Edit",
+        "subheading": "Considered silhouettes. Exceptional fabric. Worn with intention.",
+        "collection": "women",
+        "products_to_show": 4,
+        "button_label": "Shop All Women",
+        "button_link": "/collections/women"
+      }
+    },
+    "dem_col_newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Join the Intentional Wardrobe",
+            "heading_size": "h2"
+          }
+        },
+        "email_form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": ["heading", "email_form"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 52
       }
     }
   },
   "order": [
-    "main"
+    "dem_col_hero",
+    "dem_col_split",
+    "dem_col_men",
+    "dem_col_women",
+    "dem_col_newsletter"
   ]
 }

@@ -1,0 +1,252 @@
+<style>
+  .dem-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dem-split__panel {
+    position: relative;
+    height: 70vh;
+    min-height: 420px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+    background: rgb(var(--dem-black));
+  }
+
+  .dem-split__panel-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .dem-split__panel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.65s ease;
+  }
+
+  .dem-split__panel:hover .dem-split__panel-img {
+    transform: scale(1.04);
+  }
+
+  .dem-split__panel-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.62) 0%,
+      rgba(0, 0, 0, 0.1) 45%,
+      rgba(0, 0, 0, 0) 70%
+    );
+  }
+
+  /* Dividing rule between the two panels */
+  .dem-split__panel:first-child {
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .dem-split__panel-content {
+    position: relative;
+    z-index: 1;
+    padding: 40px 48px;
+    width: 100%;
+  }
+
+  .dem-split__panel-label {
+    font-family: var(--dem-font-serif);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 200;
+    color: #ffffff;
+    margin: 0 0 0.75rem;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .dem-split__panel-sub {
+    font-family: var(--dem-font-sans);
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: 0.04em;
+    margin: 0 0 1.5rem;
+    line-height: 1.5;
+  }
+
+  .dem-split__panel-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--dem-font-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 2px;
+    transition: border-color 0.2s ease, gap 0.2s ease;
+  }
+
+  .dem-split__panel-cta::after {
+    content: '\2192';
+    transition: transform 0.2s ease;
+  }
+
+  .dem-split__panel:hover .dem-split__panel-cta {
+    border-color: #ffffff;
+    gap: 0.9rem;
+  }
+
+  .dem-split__panel:hover .dem-split__panel-cta::after {
+    transform: translateX(3px);
+  }
+
+  /* Placeholder when no image set */
+  .dem-split__placeholder {
+    position: absolute;
+    inset: 0;
+    background: rgb(30, 30, 30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dem-split__placeholder svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.15;
+  }
+
+  @media screen and (max-width: 749px) {
+    .dem-split {
+      grid-template-columns: 1fr;
+    }
+    .dem-split__panel {
+      height: 65vw;
+      min-height: 280px;
+    }
+    .dem-split__panel:first-child {
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .dem-split__panel-content {
+      padding: 28px 24px;
+    }
+  }
+</style>
+
+<section class="dem-split" id="section-{{ section.id }}">
+  {%- for block in section.blocks -%}
+    <a
+      href="{{ block.settings.link | default: '/collections/all' }}"
+      class="dem-split__panel"
+      {{ block.shopify_attributes }}
+    >
+      <div class="dem-split__panel-bg">
+        {%- if block.settings.image != blank -%}
+          {{
+            block.settings.image
+            | image_url: width: 1400
+            | image_tag:
+              loading: 'eager',
+              widths: '600, 800, 1000, 1200, 1400',
+              sizes: '50vw',
+              class: 'dem-split__panel-img',
+              alt: block.settings.image.alt | default: block.settings.label
+          }}
+        {%- else -%}
+          <div class="dem-split__placeholder">
+            {{ 'lifestyle-1' | placeholder_svg_tag }}
+          </div>
+        {%- endif -%}
+        <div class="dem-split__panel-overlay"></div>
+      </div>
+
+      <div class="dem-split__panel-content">
+        {%- if block.settings.label != blank -%}
+          <p class="dem-split__panel-label">{{ block.settings.label }}</p>
+        {%- endif -%}
+        {%- if block.settings.sub != blank -%}
+          <p class="dem-split__panel-sub">{{ block.settings.sub }}</p>
+        {%- endif -%}
+        {%- if block.settings.cta != blank -%}
+          <span class="dem-split__panel-cta">{{ block.settings.cta }}</span>
+        {%- endif -%}
+      </div>
+    </a>
+  {%- endfor -%}
+</section>
+
+{% schema %}
+{
+  "name": "Dem Collection Split",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 2,
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Panel",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Editorial image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Men"
+        },
+        {
+          "type": "text",
+          "id": "sub",
+          "label": "Subline",
+          "default": "Precision cut. Built to endure."
+        },
+        {
+          "type": "text",
+          "id": "cta",
+          "label": "CTA text",
+          "default": "Shop Men"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dem Collection Split",
+      "blocks": [
+        {
+          "type": "panel",
+          "settings": {
+            "label": "Men",
+            "sub": "Precision cut. Built to endure.",
+            "cta": "Shop Men",
+            "link": "/collections/men"
+          }
+        },
+        {
+          "type": "panel",
+          "settings": {
+            "label": "Women",
+            "sub": "Considered design. Uncompromising fit.",
+            "cta": "Shop Women",
+            "link": "/collections/women"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
