@@ -6,7 +6,35 @@
   --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
+
+  /* Force linen/bone background — overrides Dawn's inline color scheme */
+  --color-background: 245, 245, 240; /* #F5F5F0 */
 }
+
+/* Dawn sets body background via an inline style block; !important is required */
+body {
+  background-color: rgb(245, 245, 240) !important; /* #F5F5F0 */
+}
+
+/* Pull hero flush to header — no gap below nav */
+.header-wrapper {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Pull main content up behind header gap */
+.main-content,
+#MainContent,
+.content-for-layout {
+  margin-top: -120px !important;
+}
+
+/* Keep header painted above pulled-up content */
+.shopify-section-group-header-group {
+  position: relative;
+  z-index: 2;
+}
+
 
 .product-card-wrapper .card,
 .contains-card--product {
