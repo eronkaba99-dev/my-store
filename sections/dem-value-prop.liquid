@@ -78,7 +78,7 @@
         <ul class="dem-value-prop__lines" style="display: block !important; width: 100% !important; max-width: none !important;">
           {%- for block in section.blocks -%}
             {%- if block.settings.line != blank -%}
-              <li {{ block.shopify_attributes }} style="display: block !important; white-space: normal !important; word-break: normal !important; max-width: none !important; width: 100% !important;">{{ block.settings.line }}</li>
+              <li {{ block.shopify_attributes }} style="display: block !important; white-space: normal !important; width: 100% !important; text-align: center !important; word-break: normal !important; max-width: none !important;">{{ block.settings.line }}</li>
             {%- endif -%}
           {%- endfor -%}
         </ul>
