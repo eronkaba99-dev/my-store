@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     min-height: max(560px, 90vh);
-    background: rgb(0, 0, 0);
+    background: #1a1a1a;
     overflow: hidden;
   }
 
@@ -84,6 +84,7 @@
           widths: '750, 1100, 1500, 1780, 2000, 2400',
           sizes: '100vw',
           class: 'dem-hero__bg-img',
+          style: 'object-fit: cover !important; object-position: center !important; width: 100% !important; height: 100% !important;',
           alt: section.settings.background_image.alt | default: ''
       }}
     </div>
