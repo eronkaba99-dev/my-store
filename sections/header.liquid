@@ -17,6 +17,27 @@
 {%- endif -%}
 
 <style>
+  /* ── Permanent sticky header — overrides base.css relative positioning ── */
+  .shopify-section-group-header-group {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 999 !important;
+    background-color: #ffffff !important;
+  }
+
+  /* Solid white on the inner wrapper so it never goes transparent over images */
+  .header-wrapper {
+    background-color: #ffffff !important;
+  }
+
+  /* Zero out the -120px pull that was for the transparent overlay hero trick.
+     With a solid sticky header the content must start at natural flow position. */
+  #MainContent,
+  .main-content,
+  .content-for-layout {
+    margin-top: 0 !important;
+  }
+
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
