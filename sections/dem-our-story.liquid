@@ -1,0 +1,76 @@
+<style>
+  .dem-our-story {
+    padding: 120px 2rem 100px;
+    background: rgb(var(--dem-bg, 255, 255, 255));
+    text-align: center;
+  }
+
+  .dem-our-story__inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .dem-our-story__eyebrow {
+    font-family: var(--dem-font-sans, 'Red Hat Text', sans-serif);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgb(var(--dem-black, 0, 0, 0));
+    margin: 0 0 3rem;
+  }
+
+  .dem-our-story__rule {
+    width: 48px;
+    height: 1px;
+    background: rgb(var(--dem-black, 0, 0, 0));
+    margin: 0 auto 3rem;
+  }
+
+  .dem-our-story__body {
+    font-family: var(--dem-font-sans, 'Red Hat Text', sans-serif);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: rgb(var(--dem-muted, 102, 102, 102));
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .dem-our-story { padding: 80px 1.5rem 72px; }
+  }
+</style>
+
+<section class="dem-our-story" id="section-{{ section.id }}">
+  <div class="dem-our-story__inner">
+    <p class="dem-our-story__eyebrow">{{ section.settings.eyebrow }}</p>
+    <div class="dem-our-story__rule"></div>
+    <p class="dem-our-story__body">{{ section.settings.body }}</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dem Our Story",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Philosophy of Essential Luxury"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "We were tired of the 10x markup. Founded by a team of three, Demetti was built on the belief that premium European craftsmanship shouldn't be gatekept. No retail middlemen. Just hard work and intentional design."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dem Our Story"
+    }
+  ]
+}
+{% endschema %}
