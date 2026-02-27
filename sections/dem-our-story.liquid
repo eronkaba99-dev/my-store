@@ -1,48 +1,56 @@
 <style>
   .dem-our-story {
-    padding: 120px 2rem 100px;
-    background: rgb(var(--dem-bg, 255, 255, 255));
+    padding: 0 2rem 120px;
+    background: #ffffff;
     text-align: center;
   }
 
   .dem-our-story__inner {
-    max-width: 680px;
+    max-width: 900px !important;
     margin: 0 auto;
   }
 
-  .dem-our-story__eyebrow {
-    font-family: var(--dem-font-sans, 'Red Hat Text', sans-serif);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgb(var(--dem-black, 0, 0, 0));
-    margin: 0 0 3rem;
+  .dem-our-story__heading {
+    font-family: var(--dem-font-serif, 'Newsreader', Georgia, serif);
+    font-size: 5rem !important;
+    font-weight: 200;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    color: #000000 !important;
+    margin-top: 150px !important;
+    margin-bottom: 2.5rem;
   }
 
   .dem-our-story__rule {
     width: 48px;
     height: 1px;
-    background: rgb(var(--dem-black, 0, 0, 0));
+    background: #000000;
     margin: 0 auto 3rem;
   }
 
   .dem-our-story__body {
     font-family: var(--dem-font-sans, 'Red Hat Text', sans-serif);
-    font-size: 1.05rem;
-    line-height: 1.85;
-    color: rgb(var(--dem-muted, 102, 102, 102));
-    margin: 0;
+    font-size: 1.25rem !important;
+    line-height: 1.6 !important;
+    color: #666666;
+    margin: 0 auto;
+    max-width: 900px !important;
+    white-space: normal !important;
   }
 
   @media screen and (max-width: 749px) {
-    .dem-our-story { padding: 80px 1.5rem 72px; }
+    .dem-our-story { padding: 0 1.5rem 80px; }
+    .dem-our-story__heading {
+      font-size: 2.8rem !important;
+      margin-top: 100px !important;
+    }
+    .dem-our-story__body { font-size: 1.1rem !important; }
   }
 </style>
 
 <section class="dem-our-story" id="section-{{ section.id }}">
   <div class="dem-our-story__inner">
-    <p class="dem-our-story__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h1 class="dem-our-story__heading">{{ section.settings.heading }}</h1>
     <div class="dem-our-story__rule"></div>
     <p class="dem-our-story__body">{{ section.settings.body }}</p>
   </div>
@@ -56,15 +64,15 @@
   "settings": [
     {
       "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
+      "id": "heading",
+      "label": "Heading",
       "default": "The Pursuit of Honest Luxury"
     },
     {
       "type": "textarea",
       "id": "body",
       "label": "Body text",
-      "default": "The inception of Demetti began with a shared observation of a broken system. We were disillusioned by an industry where price tags were untethered from reality\u2014often reaching a 10 times markup. We are a team of three who believe a garment\u2019s essence lies in its architecture. By dismantling traditional retail overhead and working directly with premier mills, we offer uncompromising quality at an honest price. This is smart luxury, reimagined."
+      "default": "The inception of Demetti began with a shared observation of a broken system. We were disillusioned by an industry where price tags were untethered from reality\u2014often reaching a ten times markup. We are a team of three who believe a garment\u2019s essence lies in its architecture. By dismantling traditional retail overhead and working directly with premier mills, we offer uncompromising quality at an honest price. This is smart luxury, reimagined."
     }
   ],
   "presets": [
