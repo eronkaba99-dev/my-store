@@ -1,278 +1,200 @@
 /* ============================================================
-   Demetti Base — Design Tokens, Typography & Global Overrides
-   Inspired by: Sothiares.com
+   Demetti — Design System
+   Global tokens, base resets, component primitives
    ============================================================ */
 
-/* ─────────────────────────────────────────────────────────────
-   1. Design Tokens
-   ───────────────────────────────────────────────────────────── */
+/* ── Tokens ─────────────────────────────────────────────── */
 :root {
-  /* ── Demetti Palette (raw RGB triplets) ── */
-  --dem-bg:      255, 255, 255;   /* pure white */
-  --dem-black:     0,   0,   0;   /* pure black */
-  --dem-accent:   44,  62,  80;   /* #2C3E50 — navy-grey primary */
-  --dem-muted:   102, 102, 102;   /* mid-grey body copy */
-  --dem-border:  230, 230, 230;   /* #E6E6E6 light rules */
+  --dem-bg:      250, 250, 250;   /* #FAFAFA */
+  --dem-black:    13,  13,  13;   /* #0D0D0D */
+  --dem-muted:   137, 137, 137;   /* #898989 */
   --dem-white:   255, 255, 255;
+  --dem-border:  220, 220, 218;   /* #DCDCDA — used by collection headers, rules */
 
-  /* ── Demetti Font Stacks ── */
-  --dem-font-serif: 'Newsreader', Georgia, serif;
-  --dem-font-sans:  'Red Hat Text', system-ui, sans-serif;
+  --dem-font-serif: 'Cormorant Garamond', Georgia, serif;
+  --dem-font-sans:  'DM Sans', system-ui, sans-serif;
 
-  /* ── Override Dawn/Lux font variables ── */
-  --font-heading-family: 'Newsreader', Georgia, serif;
-  --font-heading-style:  normal;
-  --font-heading-weight: 200;
-
-  --font-body-family:      'Red Hat Text', system-ui, sans-serif;
-  --font-body-style:       normal;
-  --font-body-weight:      400;
-  --font-body-weight-bold: 700;
-
-  /* ── Override Dawn color scheme tokens ── */
-  --color-background:            var(--dem-bg);
-  --color-foreground:            var(--dem-black);
-  --color-button:                var(--dem-black);
-  --color-button-text:           var(--dem-white);
-  --color-secondary-button:      var(--dem-white);
-  --color-secondary-button-text: var(--dem-black);
-  --color-link:                  var(--dem-black);
-
-  /* ── Shape — zero radii ── */
-  --buttons-radius:     0px;
-  --inputs-radius:      0px;
-  --media-radius:       0px;
-  --product-card-corner-radius:    0px;
-  --collection-card-corner-radius: 0px;
-  --badge-corner-radius: 0px;
-
-  /* ── Product cards — clean ── */
-  --product-card-image-padding:  0rem;
-  --product-card-border-width:   0px;
-  --product-card-border-opacity: 0;
-  --product-card-shadow-opacity: 0;
-  --product-card-shadow-visible: 0;
+  --dem-transition: 0.25s ease;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   2. Global Base
-   ───────────────────────────────────────────────────────────── */
+/* ── Base Reset ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background-color: rgb(var(--dem-bg)) !important;
   font-family: var(--dem-font-sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.6;
+  background: rgb(var(--dem-bg));
   color: rgb(var(--dem-black));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 0.9rem;
-  line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h0, .h1, .h2, .h3, .h4, .h5 {
+/* ── Headings ────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--dem-font-serif);
-  font-weight: 200;
-  letter-spacing: 0.01em;
-  line-height: 1.08;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   3. Navigation
-   ───────────────────────────────────────────────────────────── */
-.header__heading-link,
-.header__menu-item {
-  font-family: var(--dem-font-sans);
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-weight: 400;
+/* ── Links ───────────────────────────────────────────────── */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity var(--dem-transition);
 }
 
-/* ─────────────────────────────────────────────────────────────
-   4. Buttons — dem-btn classes (used across all dem sections)
-   ───────────────────────────────────────────────────────────── */
+a:hover {
+  opacity: 0.5;
+}
+
+/* ── Button Primitive ─────────────────────────────────────── */
 .dem-btn {
   display: inline-block;
   font-family: var(--dem-font-sans);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-weight: 400;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  text-decoration: none;
-  padding: 14px 36px;
-  border: 1px solid transparent;
+  letter-spacing: 0.14em;
+  padding: 12px 32px;
   border-radius: 0;
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-  /* Default: filled navy */
-  background: rgb(var(--dem-accent));
-  color: rgb(var(--dem-white));
+  transition: background var(--dem-transition), color var(--dem-transition), border-color var(--dem-transition);
+  text-align: center;
+
+  /* Ghost — dark */
+  background: transparent;
+  color: rgb(var(--dem-black));
+  border: 1px solid rgb(var(--dem-black));
 }
 
 .dem-btn:hover {
-  background: #383838;
-  color: rgb(var(--dem-white));
   opacity: 1;
-}
-
-/* Ghost variant — black border on white bg */
-.dem-btn--ghost {
-  background: transparent;
-  color: rgb(var(--dem-black));
+  background: rgb(var(--dem-black));
+  color: rgb(var(--dem-white));
   border-color: rgb(var(--dem-black));
 }
 
-.dem-btn--ghost:hover {
-  background: rgb(var(--dem-black));
-  color: rgb(var(--dem-white));
-}
-
-/* Light variant — white 2px border on dark bg */
+/* Ghost — light (for use on dark/video backgrounds) */
 .dem-btn--light {
   background: transparent;
   color: rgb(var(--dem-white));
-  border: 2px solid rgb(var(--dem-white));
+  border: 1px solid rgb(var(--dem-white));
 }
 
 .dem-btn--light:hover {
+  opacity: 1;
   background: rgb(var(--dem-white));
   color: rgb(var(--dem-black));
+  border-color: rgb(var(--dem-white));
 }
 
-/* ─────────────────────────────────────────────────────────────
-   5. Links
-   ───────────────────────────────────────────────────────────── */
-a:not(.button):not(.dem-btn) {
-  color: rgb(var(--dem-black));
-  text-decoration: none;
-  transition: opacity 0.2s ease;
+/* ── Header / Nav Overrides ──────────────────────────────── */
+header {
+  background: rgb(var(--dem-bg));
 }
 
-a:not(.button):not(.dem-btn):hover {
-  opacity: 0.6;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   6. Product Cards
-   ───────────────────────────────────────────────────────────── */
-.card__heading {
-  font-family: var(--dem-font-sans);
-  font-weight: 400;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.price {
-  font-family: var(--dem-font-sans);
-  letter-spacing: 0.05em;
-  font-weight: 400;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   7. Dawn featured-collection overrides
-   ───────────────────────────────────────────────────────────── */
-.featured-collection {
-  margin-top: 0 !important;
-}
-
-.featured-collection .title {
+header .header__title a,
+header .header__title {
   font-family: var(--dem-font-serif);
-  font-weight: 200;
-  letter-spacing: 0.02em;
-  margin-bottom: 3rem;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   8. Newsletter
-   ───────────────────────────────────────────────────────────── */
-.newsletter .inline-richtext {
-  font-family: var(--dem-font-serif);
-  font-weight: 200;
-  font-size: 2rem;
-  letter-spacing: 0.05em;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   9. Form Inputs
-   ───────────────────────────────────────────────────────────── */
-.field__input,
-.select__select,
-textarea,
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="password"],
-input[type="search"] {
-  border-radius: 0;
-  font-family: var(--dem-font-sans);
-}
-
-.field__input:focus,
-.select__select:focus,
-textarea:focus {
-  border-color: rgb(var(--dem-black));
-  box-shadow: none;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   10. Announcement Bar
-   ───────────────────────────────────────────────────────────── */
-.announcement-bar {
-  font-family: var(--dem-font-sans);
-  letter-spacing: 0.1em;
+  font-weight: 300;
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-size: 0.75rem;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   11. Fix 2 — Dawn native .button → solid black, all-caps
-   ───────────────────────────────────────────────────────────── */
-.button {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border-color: #000000 !important;
-  border-radius: 0;
+header .header__menu {
+  justify-content: center;
+  flex: 1;
+}
+
+header .header__menu a {
+  font-family: var(--dem-font-sans);
+  font-size: 0.8rem;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-family: var(--dem-font-sans);
-  font-weight: 400;
+  color: rgb(var(--dem-black));
 }
 
-.button:hover {
+header .header__menu a:hover {
+  opacity: 0.5;
+}
+
+header .header__icons a:hover {
+  opacity: 0.5;
+}
+
+/* ── Utility ─────────────────────────────────────────────── */
+img {
+  display: block;
+  max-width: 100%;
+}
+/* 1. FORCE SHOP THE COLLECTION BUTTON TO BE VISIBLE */
+.banner__buttons .button, 
+[class*="banner"] .button {
   background-color: transparent !important;
-  color: #000000 !important;
-  border-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   12. Fix 3 — Value prop ("Direct to you") — center + spacing
-   ───────────────────────────────────────────────────────────── */
-.dem-value-prop__inner {
-  grid-template-columns: 1fr;
-  max-width: 760px;
-  text-align: center;
+/* 2. FORCE SHOP NOW BUTTON TO BE SOLID BLACK WITH WHITE TEXT */
+.rich-text__buttons .button,
+[class*="rich-text"] .button {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: none !important;
+  opacity: 1 !important;
 }
 
-.dem-value-prop__divider {
-  display: none !important;
+/* 3. FORCE "DIRECT TO YOU" TEXT TO GO HORIZONTAL (NOT VERTICAL) */
+.multicolumn-list__item .rte,
+.dem-value-prop__inner,
+[class*="multicolumn"] .rte {
+  word-break: normal !important;
+  white-space: normal !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  display: block !important;
+  text-align: center !important;
 }
 
-.dem-value-prop__heading {
-  margin-bottom: 2.5rem;
+/* 4. PUSH THE HEADERS DOWN SO THEY AREN'T CROPPED */
+.collection-hero__title,
+.dem-collection-header h1 {
+  margin-top: 100px !important;
+  padding-top: 50px !important;
+  font-size: 4rem !important;
 }
 
-.dem-value-prop__lines li {
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* 5. HOMEPAGE — remove padding-top so hero fills from the fixed header down.
+      The dem-hero section is full-screen (90vh) and should sit flush under the nav.
+      Other pages keep their padding-top: 150px from header.liquid. */
+body.template-index #MainContent,
+body.template-index .main-content,
+body.template-index .content-for-layout {
+  padding-top: 0 !important;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   13. Fix 4 — Collection pages: remove the behind-nav pull
-       (the -120px in base.css is for the full-screen hero only)
-   ───────────────────────────────────────────────────────────── */
-body.template-collection .main-content,
-body.template-collection #MainContent,
-body.template-collection .content-for-layout {
-  margin-top: 0 !important;
+/* 6. HERO IMAGE — ensure the bg image always covers, never clips */
+.dem-hero__bg-img {
+  object-fit: cover !important;
+  object-position: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
 }
